@@ -5,8 +5,12 @@ import { FlatList, View, Text, StyleSheet} from 'react-native'
 import allProducts from "../products.json"
 import {useEffect, useState} from "react"
 import ProductItem from '../../components/ProductItem';
+import App from '../../../App'
+import Volver from '../../components/BotonVolver'
 
 const ItemListCategories = ({category}) => {
+
+    const [btnVolver, setBtnVolver] = useState("")
 
     const [keyword, setKeyword] = useState("")
     const [products, setProducts] = useState(allProducts)
@@ -26,14 +30,21 @@ const ItemListCategories = ({category}) => {
 
     return (
         <>
-            <Header />
+            {btnVolver?
+            <App />
+            :
+            <>
+            <Header title='ALL PRODUCTS'/>
             <Search setKeyword={setKeyword}/>
+            <Volver setBtnVolver={setBtnVolver} />
             <FlatList 
             style={styles.container}
             data={products}
             keyExtractor={item => item.id}
             renderItem={({item})=> <ProductItem item={item}/>}
             />
+            </>
+        }
         </>
 
     )
