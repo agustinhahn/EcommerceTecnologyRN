@@ -1,9 +1,10 @@
 import { View, StyleSheet, Text, Pressable} from 'react-native'
+import { colors } from '../data/Global/colors'
 
 
 const BotonVolver = ({setBtnVolver}) => {
     return (
-        <Pressable style={styles.container} onPress={()=>setBtnVolver(true)}>
+        <Pressable style={styles.goBack} onPress={()=>setBtnVolver(true)}>
             <Text>VOLVER</Text>
         </Pressable>
     )
@@ -17,4 +18,10 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10
     },
+    goBack: {
+        width: "100%",
+        backgroundColor: colors.green1,
+        padding: 10,
+        paddingStart: 40
+    }
 })

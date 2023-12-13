@@ -8,7 +8,7 @@ import App from '../../App'
 import Search from '../components/Search'
 import allCategories from '../data/categories.json'
 
-const Categories = ({setCategorySelect}) => {
+const Categories = ({setCategorySelect,setOption1}) => {
 
     const [btnVolver, setBtnVolver] = useState("")
 
@@ -24,12 +24,12 @@ const Categories = ({setCategorySelect}) => {
     return (
         <>
             {btnVolver ?
-            <App />
+            setOption1(false)
             :
             <>
             <Header title='ALL CATEGORIES' />
+            <BotonVolver setBtnVolver={setBtnVolver} setCategorySelect={setCategorySelect}/>
             <Search setKeyword={setKeyword}/>
-            <BotonVolver setBtnVolver={setBtnVolver}/>
             <FlatList
             style = {styles.container}
             data = {catSelect} //data que quiero recorrer

@@ -1,15 +1,20 @@
-import { FlatList, View, Text, StyleSheet, Image} from 'react-native'
+import { FlatList, View, Text, StyleSheet, Image, Pressable,useWindowDimensions } from 'react-native'
+import { colors } from '../data/Global/colors'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({ item, setProductDetailId}) => {
+
+    const {width} = useWindowDimensions()
+
+
     return (
-        <View style={styles.container}>
-            <Image 
+        <Pressable style={styles.container} onPress={() => setProductDetailId(item.id)}>
+            <Image
                 style={styles.image}
                 resizeMode='cover'
-                source={{uri:item.thumbnail}}
+                source={{ uri: item.thumbnail }}
             />
             <Text>{item.title}</Text>
-        </View>
+        </Pressable>
     )
 }
 
@@ -18,19 +23,31 @@ export default ProductItem
 const styles = StyleSheet.create({
     container: {
         width: "80%",
-        backgroundColor: "yellow",
+        height: 100,
+        backgroundColor: colors.green1,
         marginHorizontal: "10%",
         marginVertical: 10,
         paddingHorizontal: 10,
-        paddingVertical: 5,
+        paddingVertical: 15,
         borderRadius: 5,
         flexDirection: "row",
-        alignItems:"center",
-        justifyContent:"start",
+        alignItems: "center",
+        justifyContent: "space-between",
         gap: 30
     },
-    image:{
-        width: 50,
-        height:50,
+    text: {
+        width: "60%",
+        textAlign: "center",
+        fontSize: 20
+    },
+    textMin: {
+        width: "60%",
+        textAlign: "center",
+        fontSize: 15
+    },
+    image: {
+        minWidth: 90,
+        height: 90,
+        width: "30%"
     }
 })
